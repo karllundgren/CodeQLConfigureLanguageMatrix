@@ -5,6 +5,17 @@ on:
     branches: [main]
 
 jobs:
+  analyze:
+   name: Analyze
+   runs-on: ubuntu-latest
+   permissions:
+      actions: read
+      contents: read
+      security-events: write
+   strategy:
+      matrix:
+        language: [ 'python' ]
+
   CodeQL-Build:
     runs-on: ubuntu-latest
 
@@ -13,7 +24,8 @@ jobs:
       security-events: write
       actions: read
       contents: read
-
+    
+   
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
